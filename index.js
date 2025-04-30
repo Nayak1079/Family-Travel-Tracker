@@ -4,13 +4,14 @@ import pg from "pg";
 
 const app = express();
 const port = 3000;
+import dotenv from "dotenv";
+dotenv.config();
 
 const db = new pg.Client({
-  user: "postgres",
-  host: "localhost",
-  database: "world",
-  password: "22054215",
-  port: 5433,
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 db.connect();
 
